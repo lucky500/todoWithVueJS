@@ -22,7 +22,9 @@
 	  									 	v-model="todo"
 	  									 	placeholder="Add todo">
 	  						<span class="input-group-btn">
-	  							<button class="btn btn-primary">Add</button>
+	  							<button 	class="btn btn-primary"
+	  												type="text"
+	  												:disabled="!todoIsValid">Add</button>
 	  						</span>
 	  					</div>
 	  				</form>

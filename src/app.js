@@ -3,14 +3,20 @@ var app = new Vue({
   data: {
     message: 'Hello Vue!',
     todo: null,
-    todos: [
-			'Todo # 1',
-			'Todo # 2'
-    ]
+    todos: []
   },
   methods: { 
   	add(todo){
-  		console.log(todo);
+  		if(!this.todoIsValid){
+  			return;
+  		}
+  		this.todos.push(todo);
+  		this.todo = null;
+  	}
+  },
+  computed : {
+  	todoIsValid(){
+  		return !!this.todo;
   	}
   }
 });
