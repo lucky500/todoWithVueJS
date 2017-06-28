@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Vue.js ToDo App</title>
+	<link rel="stylesheet" href="src/app.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+	<script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+	<div id="app">
+  	<div class="container">
+  		<div class="row justify-content-md-center">
+  			<div class="col col-md-6">
+  				<div class="card">
+  					<div class="card-header">Todo Application</div>
+	  				<form	class="card-block"
+	  							@submit.prevent="add(todo)">
+	  					<div class="input-group">
+	  						<input 	type="text" 
+	  									 	class="form-control" 
+	  									 	v-model="todo"
+	  									 	placeholder="Add todo">
+	  						<span class="input-group-btn">
+	  							<button class="btn btn-primary">Add</button>
+	  						</span>
+	  					</div>
+	  				</form>
+	  				<ul class="list-group list-group-flush">
+	  					<li class="list-group-item"
+	  							v-for='todo in todos'>
+	  							{{todo}}
+	  					</li>
+	  				</ul>
+	  			</div>
+  			</div>
+  		</div>
+  	</div>
+	</div>
+	<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+	<script src="src/app.js"></script>
+</body>
+</html>
