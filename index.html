@@ -3,8 +3,9 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Vue.js ToDo App</title>
-	<link rel="stylesheet" href="src/app.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+	<link rel="stylesheet" href="src/app.css">
 	<script src="https://unpkg.com/vue"></script>
 </head>
 <body>
@@ -29,9 +30,52 @@
 	  					</div>
 	  				</form>
 	  				<ul class="list-group list-group-flush">
-	  					<li class="list-group-item"
+	  					<li class="list-group-item d-block"
 	  							v-for='todo in todos'>
-	  							{{todo}}
+	  							<div class="d-flex"
+	  										v-if="!todo.isEdited">
+	  								<label class="form-check-label">
+	  									<input 
+	  										type="checkbox" 
+	  										class="form-check-input"
+	  										v-model="todo.finished">
+	  									<span :class="{'todo-finished': todo.finished}">{{todo.content}}</span>
+	  								</label>
+	  								<div class="ml-auto btn-group">
+	  									<button class="btn btn-sm btn-primary"
+	  													@click="edit(todo)"
+	  													v-if="!isBeingEdited">
+	  										<i class="fa fa-pencil"></i>
+	  									</button>
+	  									<button class="btn btn-sm btn-danger"
+	  													@click="remove(todo)">
+	  										<i class="fa fa-trash"></i>
+	  									</button>
+	  								</div>
+	  							</div>
+	  							<form v-else
+	  										class="m-0"
+	  										@submit.prevent="update(todo)">
+	  								<div class="input-group">
+	  									<input type="text"
+	  													class="form-control from-control-sm"
+	  													placeholder="Edit"
+	  													v-model="editTodo">
+	  									<span class="input-group-btn">
+	  										<button class="btn btn-sm btn-primary"
+	  														type="submit"
+	  														:disabled="!editTodoIsValid">
+	  											<i class="fa fa-save"></i>
+	  										</button>
+	  									</span>
+	  									<span class="input-group-btn">
+	  										<button class="btn btn-sm btn-danger"
+	  														@click="remove(todo)">
+	  											<i class="fa fa-trash"></i>
+	  										</button>
+	  									</span>
+	  								</div>
+	  							</form>
 	  					</li>
 	  				</ul>
 	  			</div>
